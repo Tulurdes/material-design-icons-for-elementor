@@ -1,7 +1,7 @@
 ﻿=== Material Design Icons for Elementor ===
 Contributors: photon2020
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7F6Y5K484F2C8&source=url
-Tags: elementor, material design icons
+Tags: elementor, material design icons, elementor icons
 Requires at least: 4.7
 Tested up to: 5.3
 Requires PHP: 5.6
