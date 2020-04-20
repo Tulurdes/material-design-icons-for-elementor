@@ -30,8 +30,51 @@ gulp.task( 'css-icons', function() {
 		.pipe( notify( 'Compile Sass Done!' ) );
 } );
 
+gulp.task( 'css-icons-outlined', function() {
+	return gulp.src( './assets/material-icons/scss/material-icons-outlined.scss' )
+		.pipe(
+			plumber( {
+				errorHandler: function( error ) {
+					console.log( '=================ERROR=================' );
+					console.log( error.message );
+					this.emit( 'end' );
+				}
+			} )
+		)
+		.pipe( sass( { outputStyle: 'compressed' } ) )
+		.pipe( autoprefixer( {
+			browsers: ['last 10 versions'],
+			cascade:  false
+		} ) )
+
+		.pipe( rename( 'material-icons-outlined.css' ) )
+		.pipe( gulp.dest( './assets/material-icons/css/' ) )
+		.pipe( notify( 'Compile Sass Done!' ) );
+} );
+
+gulp.task( 'css-icons-editor', function() {
+	return gulp.src( './assets/material-icons/scss/material-icons-editor.scss' )
+		.pipe(
+			plumber( {
+				errorHandler: function( error ) {
+					console.log( '=================ERROR=================' );
+					console.log( error.message );
+					this.emit( 'end' );
+				}
+			} )
+		)
+		.pipe( sass( { outputStyle: 'compressed' } ) )
+		.pipe( autoprefixer( {
+			browsers: ['last 10 versions'],
+			cascade:  false
+		} ) )
+
+		.pipe( rename( 'material-icons-editor.css' ) )
+		.pipe( gulp.dest( './assets/material-icons/css/' ) )
+		.pipe( notify( 'Compile Sass Done!' ) );
+} );
+
 //watch
 gulp.task( 'watch', function() {
-	livereload.listen();
-	gulp.watch( './assets/material-icons/scss/**', ['css-icons'] );
+	gulp.watch( './assets/material-icons/scss/**', gulp.series( 'css-icons', 'css-icons-outlined', 'css-icons-editor' ) );
 } );

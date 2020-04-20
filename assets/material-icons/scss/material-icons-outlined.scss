@@ -1,15 +1,15 @@
 @font-face {
-  font-family: 'Material Icons';
+  font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'),
-       local('MaterialIcons-Regular'),
-       url(../fonts/materialicons-regular.woff2) format('woff2');
+  src: local('Material Icons Outlined'),
+       local('MaterialIcons-Outlined'),
+       url(../fonts/materialicons-outlined.woff2) format('woff2');
 }
 
-.material-icons {
+.material-icons-outlined {
   display: inline-block;
-  font-family: 'Material Icons';
+  font-family: 'Material Icons Outlined';
   font-weight: normal;
   font-style: normal;
   line-height: 1;

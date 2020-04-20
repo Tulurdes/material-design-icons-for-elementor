@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
-// If class `Jet_Search` doesn't exists yet.
+// If class `Elem_Material_Icons` doesn't exists yet.
 if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 
 	/**
@@ -107,6 +107,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 			$this->load_files();
 
 			Elem_Material_Icons_Integration::get_instance();
+			Elem_Material_Icons_Settings::get_instance();
 		}
 
 		/**
@@ -140,6 +141,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 */
 		public function load_files() {
 			require $this->plugin_path( 'includes/integration.php' );
+			require $this->plugin_path( 'includes/settings.php' );
 		}
 
 		/**

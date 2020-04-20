@@ -1,0 +1,9 @@
+@import "icons";
+
+@each $name in $material-icons {
+  &.md-#{$name} {
+    &:before {
+      content: unquote('"#{$name}"');
+    }
+  }
+}
