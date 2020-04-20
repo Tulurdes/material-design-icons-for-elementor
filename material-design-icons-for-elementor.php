@@ -62,6 +62,20 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		private $plugin_path = null;
 
 		/**
+		 * Holder for integration component.
+		 *
+		 * @var Elem_Material_Icons_Integration
+		 */
+		public $integration = null;
+
+		/**
+		 * Holder for settings component.
+		 *
+		 * @var Elem_Material_Icons_Settings
+		 */
+		public $settings = null;
+
+		/**
 		 * Sets up needed actions/filters for the plugin to initialize.
 		 *
 		 * @since 1.0.0
@@ -106,8 +120,8 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 
 			$this->load_files();
 
-			Elem_Material_Icons_Integration::get_instance();
-			Elem_Material_Icons_Settings::get_instance();
+			$this->integration = new Elem_Material_Icons_Integration();
+			$this->settings    = new Elem_Material_Icons_Settings();
 		}
 
 		/**

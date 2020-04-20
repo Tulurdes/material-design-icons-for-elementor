@@ -16,20 +16,13 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 	class Elem_Material_Icons_Integration {
 
 		/**
-		 * A reference to an instance of this class.
-		 *
-		 * @since 1.0.0
-		 * @var   Elem_Material_Icons_Integration
-		 */
-		private static $instance = null;
-
-		/**
 		 * Initialize integration hooks
 		 *
 		 * @return void
 		 */
 		public function __construct() {
 			add_action( 'elementor/editor/before_enqueue_styles',  array( $this, 'enqueue_editor_styles' ) );
+			add_action( 'elementor/preview/enqueue_styles',        array( $this, 'enqueue_editor_styles' ) );
 			add_filter( 'elementor/icons_manager/additional_tabs', array( $this, 'add_material_icons_tabs' ) );
 		}
 
@@ -44,31 +37,49 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 
 		public function add_material_icons_tabs( $tabs = array() ) {
 
-			$tabs['material-design-icons'] = array(
-				'name'            => 'material-design-icons',
-				'label'           => esc_html__( 'Material Design Icons - Filled', 'elem-material-icons' ),
-				'labelIcon'       => 'fab fa-google',
-				'prefix'          => 'md-',
-				'displayPrefix'   => 'material-icons',
-				'url'             => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ),
-				'fetchJson'       => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
-				'ver'             => elem_material_icons()->get_version(),
-				'render_callback' => array( $this, 'render_material_icon' ),
-			);
+			if ( $this->check_if_enabled_icon_style( 'filled' ) ) {
+				$tabs['material-design-icons'] = array(
+					'name'            => 'material-design-icons',
+					'label'           => esc_html__( 'Material Design Icons - Filled', 'elem-material-icons' ),
+					'labelIcon'       => 'fab fa-google',
+					'prefix'          => 'md-',
+					'displayPrefix'   => 'material-icons',
+					'url'             => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ),
+					'fetchJson'       => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
+					'ver'             => elem_material_icons()->get_version(),
+					'render_callback' => array( $this, 'render_material_icon' ),
+				);
+			}
 
-			$tabs['material-design-icons-outlined'] = array(
-				'name'            => 'material-design-icons-outlined',
-				'label'           => esc_html__( 'Material Design Icons - Outlined', 'elem-material-icons' ),
-				'labelIcon'       => 'fab fa-google',
-				'prefix'          => 'md-',
-				'displayPrefix'   => 'material-icons-outlined',
-				'url'             => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
-				'fetchJson'       => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
-				'ver'             => elem_material_icons()->get_version(),
-				'render_callback' => array( $this, 'render_material_icon_outlined' ),
-			);
+			if ( $this->check_if_enabled_icon_style( 'outlined' ) ) {
+				$tabs['material-design-icons-outlined'] = array(
+					'name'            => 'material-design-icons-outlined',
+					'label'           => esc_html__( 'Material Design Icons - Outlined', 'elem-material-icons' ),
+					'labelIcon'       => 'fab fa-google',
+					'prefix'          => 'md-',
+					'displayPrefix'   => 'material-icons-outlined',
+					'url'             => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
+					'fetchJson'       => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
+					'ver'             => elem_material_icons()->get_version(),
+					'render_callback' => array( $this, 'render_material_icon_outlined' ),
+				);
+			}
 
 			return $tabs;
+		}
+
+		public function check_if_enabled_icon_style( $style = 'filled' ) {
+			static $icon_styles = null;
+
+			if ( null === $icon_styles ) {
+				$icon_styles = elem_material_icons()->settings->get_settings( 'icon_styles' );
+			}
+
+			if ( empty( $icon_styles ) || ! is_array( $icon_styles ) ) {
+				return false;
+			}
+
+			return in_array( $style, $icon_styles );
 		}
 
 		public function render_material_icon( $icon, $attributes, $tag ) {
@@ -91,27 +102,16 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 				}
 			}
 
-			$style_suffix = ! empty( $style ) ? '-' . $style : '';
-			$search       = sprintf( 'material-icons%s md-', $style_suffix );
+			$value = '';
 
-			$value = str_replace( $search, '', $icon['value'] );
+			if ( ! is_admin() ) {
+				$style_suffix = ! empty( $style ) ? '-' . $style : '';
+				$search       = sprintf( 'material-icons%s md-', $style_suffix );
+
+				$value = str_replace( $search, '', $icon['value'] );
+			}
 
 			return '<' . $tag . ' ' . Elementor\Utils::render_html_attributes( $attributes ) . '>' . $value . '</' . $tag . '>';
-		}
-
-		/**
-		 * Returns the instance.
-		 *
-		 * @since  1.0.0
-		 * @return Elem_Material_Icons_Integration
-		 */
-		public static function get_instance() {
-
-			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance ) {
-				self::$instance = new self;
-			}
-			return self::$instance;
 		}
 	}
 
