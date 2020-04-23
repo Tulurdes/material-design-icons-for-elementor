@@ -52,8 +52,8 @@ gulp.task( 'css-icons-outlined', function() {
 		.pipe( notify( 'Compile Sass Done!' ) );
 } );
 
-gulp.task( 'css-icons-editor', function() {
-	return gulp.src( './assets/material-icons/scss/material-icons-editor.scss' )
+gulp.task( 'css-icons-codes', function() {
+	return gulp.src( './assets/material-icons/scss/material-icons-codes.scss' )
 		.pipe(
 			plumber( {
 				errorHandler: function( error ) {
@@ -69,12 +69,12 @@ gulp.task( 'css-icons-editor', function() {
 			cascade:  false
 		} ) )
 
-		.pipe( rename( 'material-icons-editor.css' ) )
+		.pipe( rename( 'material-icons-codes.css' ) )
 		.pipe( gulp.dest( './assets/material-icons/css/' ) )
 		.pipe( notify( 'Compile Sass Done!' ) );
 } );
 
 //watch
 gulp.task( 'watch', function() {
-	gulp.watch( './assets/material-icons/scss/**', gulp.series( 'css-icons', 'css-icons-outlined', 'css-icons-editor' ) );
+	gulp.watch( './assets/material-icons/scss/**', gulp.series( 'css-icons', 'css-icons-outlined', 'css-icons-codes' ) );
 } );
