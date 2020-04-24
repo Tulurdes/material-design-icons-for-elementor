@@ -30,6 +30,28 @@ gulp.task( 'css-icons', function() {
 		.pipe( notify( 'Compile Sass Done!' ) );
 } );
 
+gulp.task( 'css-icons-regular', function() {
+	return gulp.src( './assets/material-icons/scss/material-icons-regular.scss' )
+		.pipe(
+			plumber( {
+				errorHandler: function( error ) {
+					console.log( '=================ERROR=================' );
+					console.log( error.message );
+					this.emit( 'end' );
+				}
+			} )
+		)
+		.pipe( sass( { outputStyle: 'compressed' } ) )
+		.pipe( autoprefixer( {
+			browsers: ['last 10 versions'],
+			cascade:  false
+		} ) )
+
+		.pipe( rename( 'material-icons-regular.css' ) )
+		.pipe( gulp.dest( './assets/material-icons/css/' ) )
+		.pipe( notify( 'Compile Sass Done!' ) );
+} );
+
 gulp.task( 'css-icons-outlined', function() {
 	return gulp.src( './assets/material-icons/scss/material-icons-outlined.scss' )
 		.pipe(
@@ -52,29 +74,7 @@ gulp.task( 'css-icons-outlined', function() {
 		.pipe( notify( 'Compile Sass Done!' ) );
 } );
 
-gulp.task( 'css-icons-codes', function() {
-	return gulp.src( './assets/material-icons/scss/material-icons-codes.scss' )
-		.pipe(
-			plumber( {
-				errorHandler: function( error ) {
-					console.log( '=================ERROR=================' );
-					console.log( error.message );
-					this.emit( 'end' );
-				}
-			} )
-		)
-		.pipe( sass( { outputStyle: 'compressed' } ) )
-		.pipe( autoprefixer( {
-			browsers: ['last 10 versions'],
-			cascade:  false
-		} ) )
-
-		.pipe( rename( 'material-icons-codes.css' ) )
-		.pipe( gulp.dest( './assets/material-icons/css/' ) )
-		.pipe( notify( 'Compile Sass Done!' ) );
-} );
-
 //watch
 gulp.task( 'watch', function() {
-	gulp.watch( './assets/material-icons/scss/**', gulp.series( 'css-icons', 'css-icons-outlined', 'css-icons-codes' ) );
+	gulp.watch( './assets/material-icons/scss/**', gulp.series( 'css-icons', 'css-icons-regular', 'css-icons-outlined' ) );
 } );

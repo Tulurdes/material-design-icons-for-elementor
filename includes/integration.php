@@ -33,8 +33,8 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 					'labelIcon'     => 'fab fa-google',
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons',
-					'url'           => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ),
-					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-codes.css' ) ),
+					'url'           => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-regular.css' ),
+					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
 					'fetchJson'     => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
 					'ver'           => elem_material_icons()->get_version(),
 				);
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons-outlined',
 					'url'           => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
-					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-codes.css' ) ),
+					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
 					'fetchJson'     => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
 					'ver'           => elem_material_icons()->get_version(),
 				);
