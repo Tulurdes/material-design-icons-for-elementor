@@ -29,6 +29,9 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'register_page' ), 99 );
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
+
+			// ADD plugin action link.
+			add_filter( 'plugin_action_links_' . elem_material_icons()->plugin_basename(),  array( $this, 'plugin_action_links' ) );
 		}
 
 		public function register_page() {
@@ -104,6 +107,22 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			}
 
 			return $settings;
+		}
+
+		/**
+		 * Plugin action links.
+		 *
+		 * @param  array $links An array of plugin action links.
+		 * @return array An array of plugin action links.
+		 */
+		public function plugin_action_links( $links = array() ) {
+
+			$links['material-icons-settings'] = sprintf('<a href="%1$s">%2$s</a>',
+				'admin.php?page=elem-material-icons-settings',
+				esc_html__( 'Settings', 'elem-material-icons' )
+			);
+
+			return $links;
 		}
 	}
 

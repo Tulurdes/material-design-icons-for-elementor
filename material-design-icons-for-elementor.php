@@ -62,6 +62,15 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		private $plugin_path = null;
 
 		/**
+		 * Holder for base plugin name
+		 *
+		 * @since  1.0.0
+		 * @access private
+		 * @var    string
+		 */
+		private $plugin_basename = null;
+
+		/**
 		 * Holder for integration component.
 		 *
 		 * @var Elem_Material_Icons_Integration
@@ -187,6 +196,17 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 			}
 
 			return $this->plugin_url . $path;
+		}
+
+		/**
+		 * Get plugin base name.
+		 */
+		public function plugin_basename() {
+			if ( ! $this->plugin_basename ) {
+				$this->plugin_basename = plugin_basename( __FILE__ );
+			}
+
+			return $this->plugin_basename;
 		}
 
 		/**
