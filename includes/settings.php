@@ -30,6 +30,9 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			add_action( 'admin_menu', array( $this, 'register_page' ), 99 );
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 
+			// Assets
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+
 			// ADD plugin action link.
 			add_filter( 'plugin_action_links_' . elem_material_icons()->plugin_basename(),  array( $this, 'plugin_action_links' ) );
 		}
@@ -50,6 +53,12 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			<div class="wrap">
 				<h2><?php echo get_admin_page_title() ?></h2>
 
+				<div class="elem-material-banner">
+					<a href="<?php echo $this->get_banner_url(); ?>" target="_blank">
+						<img src="<?php echo elem_material_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" alt="">
+					</a>
+				</div>
+
 				<form method="POST" action="options.php">
 					<?php
 					settings_fields( $this->key );
@@ -57,6 +66,10 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 					submit_button();
 					?>
 				</form>
+
+				<a href="https://www.paypal.me/olenabartoshchak" class="elem-material-donate" target="_blank">
+					<?php esc_html_e( 'Donate', 'elem-material-icons' ); ?>
+				</a>
 			</div>
 			<?php
 		}
@@ -109,6 +122,18 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			return $settings;
 		}
 
+		public function enqueue_assets() {
+
+			if ( isset( $_GET['page'] ) && 'elem-material-icons-settings' === $_GET['page'] ) {
+				wp_enqueue_style(
+					'elem-material-icons-admin-css',
+					elem_material_icons()->plugin_url( 'assets/admin/css/admin.css' ),
+					false,
+					elem_material_icons()->get_version()
+				);
+			}
+		}
+
 		/**
 		 * Plugin action links.
 		 *
@@ -123,6 +148,17 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			);
 
 			return $links;
+		}
+
+		public function get_banner_url() {
+			return add_query_arg(
+				array(
+					'utm_source'   => 'photon-wp',
+					'utm_medium'   => 'material-design-icons',
+					'utm_campaign' => 'vendor-plugin',
+				),
+				'https://crocoblock.com/'
+			);
 		}
 	}
 
