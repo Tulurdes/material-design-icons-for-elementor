@@ -3,7 +3,7 @@
  * Plugin Name: Material Design Icons for Elementor
  * Plugin URI:  https://github.com/photon-wp/material-design-icons-for-elementor
  * Description: Google Material Design Icons for Elementor Icons Control
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      Photon WP
  * Author URI:  https://github.com/photon-wp
  * Text Domain: elem-material-icons
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 * @access private
 		 * @var    string
 		 */
-		private $version = '1.1.0';
+		private $version = '1.1.1';
 
 		/**
 		 * Holder for base plugin URL.
