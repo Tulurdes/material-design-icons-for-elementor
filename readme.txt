@@ -3,7 +3,7 @@ Contributors: photon2020
 Donate link: https://www.paypal.me/olenabartoshchak
 Tags: elementor, material design icons, elementor icons
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.5.1
 Requires PHP: 5.6
 Stable tag: 1.1.1
 License: GPLv3
