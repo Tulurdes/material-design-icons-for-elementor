@@ -123,7 +123,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 * @return void
 		 */
 		public function init() {
-			if ( ! $this->has_elementor() ) {
+			if ( ! $this->has_elementor() || ! $this->has_beaver() ) {
 				return;
 			}
 
@@ -142,6 +142,17 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 */
 		public function has_elementor() {
 			return did_action( 'elementor/loaded' );
+		}
+
+		/**
+		 * Check if Beaver Builder installed and activated.
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 * @return boolean
+		 */
+		public function has_beaver() {
+			return defined( 'FL_BUILDER_VERSION' );
 		}
 
 		/**
