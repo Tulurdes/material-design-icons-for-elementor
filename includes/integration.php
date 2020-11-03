@@ -1,6 +1,6 @@
 <?php
 /**
- * Elem_Material_Icons_Integration class
+ * MD_Icons_Integration class
  */
 
 // If this file is called directly, abort.
@@ -8,12 +8,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
+if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 
 	/**
-	 * Define Elem_Material_Icons_Integration class
+	 * Define MD_icons_Integration class
 	 */
-	class Elem_Material_Icons_Integration {
+	class MD_Icons_Integration {
 
 		private static $icons_config = null;
 
@@ -27,33 +27,33 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 			self::$icons_config = array(
 				'filled'   => array(
 					'name'          => 'material-design-icons',
-					'label'         => esc_html__( 'Material Design Icons - Filled', 'elem-material-icons' ),
+					'label'         => esc_html__( 'Material Design Icons - Filled', 'md-icons' ),
 					'labelIcon'     => 'fab fa-google',
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons',
-					'url'           => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-regular.css' ),
-					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
-					'fetchJson'     => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
-					'ver'           => elem_material_icons()->get_version(),
+					'url'           => md_icons()->plugin_url( 'assets/material-icons/css/material-icons-regular.css' ),
+					'enqueue'       => array( md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
+					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
+					'ver'           => md_icons()->get_version(),
 				),
 				'outlined' => array(
 					'name'          => 'material-design-icons-outlined',
-					'label'         => esc_html__( 'Material Design Icons - Outlined', 'elem-material-icons' ),
+					'label'         => esc_html__( 'Material Design Icons - Outlined', 'md-icons' ),
 					'labelIcon'     => 'fab fa-google',
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons-outlined',
-					'url'           => elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
-					'enqueue'       => array( elem_material_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
-					'fetchJson'     => elem_material_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
-					'ver'           => elem_material_icons()->get_version(),
+					'url'           => md_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
+					'enqueue'       => array( md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
+					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
+					'ver'           => md_icons()->get_version(),
 				),
 			);
 
-			if ( elem_material_icons()->has_elementor() ) {
+			if ( md_icons()->has_elementor() ) {
 				add_filter( 'elementor/icons_manager/additional_tabs', array( $this, 'add_material_icons_tabs' ) );
 			}
 
-			if ( elem_material_icons()->has_beaver() ) {
+			if ( md_icons()->has_beaver() ) {
 				add_filter( 'fl_builder_icon_sets', array( $this, 'add_material_icons_to_beaver' ) );
 			}
 		}
@@ -104,7 +104,7 @@ if ( ! class_exists( 'Elem_Material_Icons_Integration' ) ) {
 			static $icon_styles = null;
 
 			if ( null === $icon_styles ) {
-				$icon_styles = elem_material_icons()->settings->get_settings( 'icon_styles' );
+				$icon_styles = md_icons()->settings->get_settings( 'icon_styles' );
 			}
 
 			if ( empty( $icon_styles ) || ! is_array( $icon_styles ) ) {

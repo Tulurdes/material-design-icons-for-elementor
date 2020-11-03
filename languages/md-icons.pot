@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Material Design Icons for Elementor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-24 12:25+0200\n"
+"POT-Creation-Date: 2020-10-31 10:50+0200\n"
 "PO-Revision-Date: 2018-08-29 14:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,11 +17,39 @@ msgstr ""
 "esc_attr__;_x: 1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: includes/integration.php:39
+#: includes/integration.php:30
+msgid "Material Design Icons - Filled"
+msgstr ""
+
+#: includes/integration.php:41
+msgid "Material Design Icons - Outlined"
+msgstr ""
+
+#: includes/settings.php:43 includes/settings.php:44
 msgid "Material Design Icons"
+msgstr ""
+
+#: includes/settings.php:71
+msgid "Donate"
+msgstr ""
+
+#: includes/settings.php:92
+msgid "Icon Styles"
+msgstr ""
+
+#: includes/settings.php:105
+msgid "Filled"
+msgstr ""
+
+#: includes/settings.php:110
+msgid "Outlined"
+msgstr ""
+
+#: includes/settings.php:147
+msgid "Settings"
 msgstr ""

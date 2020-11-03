@@ -1,6 +1,6 @@
 <?php
 /**
- * Elem_Material_Icons_Settings class
+ * MD_Icons_Settings class
  */
 
 // If this file is called directly, abort.
@@ -8,12 +8,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
+if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 
 	/**
 	 * Define Elem_Material_Icons_Settings class
 	 */
-	class Elem_Material_Icons_Settings {
+	class MD_Icons_Settings {
 
 		private $key = 'elem-material-icons-settings';
 
@@ -34,14 +34,14 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
 			// ADD plugin action link.
-			add_filter( 'plugin_action_links_' . elem_material_icons()->plugin_basename(),  array( $this, 'plugin_action_links' ) );
+			add_filter( 'plugin_action_links_' . md_icons()->plugin_basename(),  array( $this, 'plugin_action_links' ) );
 		}
 
 		public function register_page() {
 			add_submenu_page(
-				'elementor',
-				esc_html__( 'Material Design Icons', 'elem-material-icons' ),
-				esc_html__( 'Material Design Icons', 'elem-material-icons' ),
+				'options-general.php',
+				esc_html__( 'Material Design Icons', 'md-icons' ),
+				esc_html__( 'Material Design Icons', 'md-icons' ),
 				'manage_options',
 				$this->key,
 				array( $this, 'render_page' )
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 
 				<div class="elem-material-banner">
 					<a href="<?php echo $this->get_banner_url(); ?>" target="_blank">
-						<img src="<?php echo elem_material_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" alt="">
+						<img src="<?php echo md_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" alt="">
 					</a>
 				</div>
 
@@ -68,7 +68,7 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 				</form>
 
 				<a href="https://www.paypal.me/olenabartoshchak" class="elem-material-donate" target="_blank">
-					<?php esc_html_e( 'Donate', 'elem-material-icons' ); ?>
+					<?php esc_html_e( 'Donate', 'md-icons' ); ?>
 				</a>
 			</div>
 			<?php
@@ -89,7 +89,7 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 
 			add_settings_field(
 				'icon_styles',
-				esc_html__( 'Icon Styles', 'elem-material-icons' ),
+				esc_html__( 'Icon Styles', 'md-icons' ),
 				array( $this, 'render_icon_styles_control' ),
 				$this->key,
 				'settings_section'
@@ -102,12 +102,12 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 			?>
 			<label>
 				<input type="checkbox" name="<?php echo $this->key; ?>[icon_styles][]" value="filled" <?php checked( true, in_array( 'filled', $icon_styles ) ); ?>/>
-				<?php esc_html_e( 'Filled', 'elem-material-icons' ); ?>
+				<?php esc_html_e( 'Filled', 'md-icons' ); ?>
 			</label>
 			<br>
 			<label>
 				<input type="checkbox" name="<?php echo $this->key; ?>[icon_styles][]" value="outlined" <?php checked( true, in_array( 'outlined', $icon_styles ) ); ?>/>
-				<?php esc_html_e( 'Outlined', 'elem-material-icons' ); ?>
+				<?php esc_html_e( 'Outlined', 'md-icons' ); ?>
 			</label>
 			<?php
 		}
@@ -124,12 +124,12 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 
 		public function enqueue_assets() {
 
-			if ( isset( $_GET['page'] ) && 'elem-material-icons-settings' === $_GET['page'] ) {
+			if ( isset( $_GET['page'] ) && $this->key === $_GET['page'] ) {
 				wp_enqueue_style(
-					'elem-material-icons-admin-css',
-					elem_material_icons()->plugin_url( 'assets/admin/css/admin.css' ),
+					'md-icons-admin-css',
+					md_icons()->plugin_url( 'assets/admin/css/admin.css' ),
 					false,
-					elem_material_icons()->get_version()
+					md_icons()->get_version()
 				);
 			}
 		}
@@ -143,8 +143,8 @@ if ( ! class_exists( 'Elem_Material_Icons_Settings' ) ) {
 		public function plugin_action_links( $links = array() ) {
 
 			$links['material-icons-settings'] = sprintf('<a href="%1$s">%2$s</a>',
-				'admin.php?page=elem-material-icons-settings',
-				esc_html__( 'Settings', 'elem-material-icons' )
+				'admin.php?page=' . $this->key,
+				esc_html__( 'Settings', 'md-icons' )
 			);
 
 			return $links;

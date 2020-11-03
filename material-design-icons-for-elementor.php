@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Material Design Icons for Elementor
+ * Plugin Name: Material Design Icons for Page Builders
  * Plugin URI:  https://github.com/photon-wp/material-design-icons-for-elementor
- * Description: Google Material Design Icons for Elementor Icons Control
+ * Description: Google Material Design Icons for Page Builders Icons Control
  * Version:     1.1.1
  * Author:      Photon WP
  * Author URI:  https://github.com/photon-wp
- * Text Domain: elem-material-icons
+ * Text Domain: md-icons
  * License:     GPL-3.0+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Domain Path: /languages
@@ -17,20 +17,20 @@ if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
-// If class `Elem_Material_Icons` doesn't exists yet.
-if ( ! class_exists( 'Elem_Material_Icons' ) ) {
+// If class `MD_Icons` doesn't exists yet.
+if ( ! class_exists( 'MD_Icons' ) ) {
 
 	/**
 	 * Sets up and initializes the plugin.
 	 */
-	class Elem_Material_Icons {
+	class MD_Icons {
 
 		/**
 		 * A reference to an instance of this class.
 		 *
 		 * @since  1.0.0
 		 * @access private
-		 * @var    Elem_Material_Icons
+		 * @var    MD_Icons
 		 */
 		private static $instance = null;
 
@@ -73,14 +73,14 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		/**
 		 * Holder for integration component.
 		 *
-		 * @var Elem_Material_Icons_Integration
+		 * @var MD_Icons_Integration
 		 */
 		public $integration = null;
 
 		/**
 		 * Holder for settings component.
 		 *
-		 * @var Elem_Material_Icons_Settings
+		 * @var MD_Icons_Settings
 		 */
 		public $settings = null;
 
@@ -123,14 +123,14 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 * @return void
 		 */
 		public function init() {
-			if ( ! $this->has_elementor() || ! $this->has_beaver() ) {
+			if ( ! $this->has_elementor() && ! $this->has_beaver() ) {
 				return;
 			}
 
 			$this->load_files();
 
-			$this->integration = new Elem_Material_Icons_Integration();
-			$this->settings    = new Elem_Material_Icons_Settings();
+			$this->integration = new MD_Icons_Integration();
+			$this->settings    = new MD_Icons_Settings();
 		}
 
 		/**
@@ -228,7 +228,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 * @return void
 		 */
 		public function lang() {
-			load_plugin_textdomain( 'elem-material-icons', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'md-icons', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**
@@ -252,7 +252,7 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @access public
-		 * @return Elem_Material_Icons
+		 * @return MD_Icons
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
@@ -264,17 +264,17 @@ if ( ! class_exists( 'Elem_Material_Icons' ) ) {
 	}
 }
 
-if ( ! function_exists( 'elem_material_icons' ) ) {
+if ( ! function_exists( 'md_icons' ) ) {
 
 	/**
 	 * Returns instance of the plugin class.
 	 *
 	 * @since  1.0.0
-	 * @return Elem_Material_Icons
+	 * @return MD_Icons
 	 */
-	function elem_material_icons() {
-		return Elem_Material_Icons::get_instance();
+	function md_icons() {
+		return MD_Icons::get_instance();
 	}
 }
 
-elem_material_icons();
+md_icons();
