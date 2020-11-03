@@ -54,7 +54,10 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 			}
 
 			if ( md_icons()->has_beaver() ) {
-				add_filter( 'fl_builder_icon_sets', array( $this, 'add_material_icons_to_beaver' ) );
+				add_filter( 'fl_builder_icon_sets',               array( $this, 'add_material_icons_to_beaver' ) );
+				add_action( 'wp_enqueue_scripts',                 array( $this, 'register_icons_assets' ) );
+				add_action( 'wp_enqueue_scripts',                 array( $this, 'enqueue_icons_assets_in_beaver_editor' ) );
+				add_action( 'fl_builder_enqueue_styles_for_icon', array( $this, 'enqueue_icons_assets_for_beaver_module' ) );
 			}
 		}
 
@@ -86,18 +89,68 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 				}
 
 				$sets[ $config['name'] ] = array(
-					'name'       => $config['label'],
-					'prefix'     => $config['displayPrefix'],
-					'type'       => 'mdi',
-					'icons'      => $icons,
-					'stylesheet' => $config['url'],
+					'name'   => $config['label'],
+					'prefix' => $config['displayPrefix'],
+					'type'   => 'mdi',
+					'icons'  => $icons,
 				);
 			}
 
-			//var_dump( $sets );
-
-
 			return $sets;
+		}
+
+		public function enqueue_icons_assets_in_beaver_editor() {
+
+			if ( ! FLBuilderModel::is_builder_active() ) {
+				return;
+			}
+
+			foreach ( self::$icons_config as $key => $config ) {
+				if ( ! $this->check_if_enabled_icon_style( $key ) ) {
+					continue;
+				}
+
+				wp_enqueue_style( $config['name'] );
+			}
+		}
+
+		public function enqueue_icons_assets_for_beaver_module( $icon ) {
+			foreach ( self::$icons_config as $key => $config ) {
+
+				if ( ! $this->check_if_enabled_icon_style( $key ) ) {
+					continue;
+				}
+
+				if ( stristr( $icon, $config['displayPrefix'] . ' ' . $config['prefix'] ) ) {
+					wp_enqueue_style( $config['name'] );
+
+					return;
+				}
+			}
+		}
+
+		public function register_icons_assets() {
+
+			wp_register_style(
+				'material-icons',
+				md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ),
+				false,
+				md_icons()->get_version()
+			);
+
+			foreach ( self::$icons_config as $key => $config ) {
+
+				if ( ! $this->check_if_enabled_icon_style( $key ) ) {
+					continue;
+				}
+
+				wp_register_style(
+					$config['name'],
+					$config['url'],
+					array( 'material-icons' ),
+					$config['ver']
+				);
+			}
 		}
 
 		public function check_if_enabled_icon_style( $style = 'filled' ) {
