@@ -27,7 +27,7 @@ Enjoy using *Material Design Icons for Page Builders*? [**Please consider making
 == Changelog ==
 
 = 1.2.0 =
-* Added support for the Beaver Builder plugin
+* Added compatibility with the Beaver Builder plugin
 * Added minor improvements
 
 = 1.1.1 =
