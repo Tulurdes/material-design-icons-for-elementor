@@ -82,7 +82,7 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 				}
 
 				$icons  = array();
-				$_icons = json_decode( file_get_contents( $config['fetchJson'] ), true );
+				$_icons = $this->get_json_content( $config['fetchJson'] );
 
 				foreach ( $_icons['icons'] as $icon ) {
 					$icons[] = $config['prefix'] . $icon;
@@ -185,6 +185,17 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 			}
 
 			return in_array( $style, $icon_styles );
+		}
+
+		public function get_json_content( $json_url ) {
+
+			$json_path = str_replace( md_icons()->plugin_url(), md_icons()->plugin_path(), $json_url );
+
+			ob_start();
+			include $json_path;
+			$json = ob_get_clean();
+
+			return json_decode( $json, true );
 		}
 	}
 
