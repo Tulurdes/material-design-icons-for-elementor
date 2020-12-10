@@ -3,7 +3,7 @@ Contributors: photon2020
 Donate link: https://www.paypal.me/olenabartoshchak
 Tags: elementor, material design icons, elementor icons, beaver builder, beaver builder icons
 Requires at least: 4.7
-Tested up to: 5.5.3
+Tested up to: 5.6
 Requires PHP: 5.6
 Stable tag: 1.2.0
 License: GPLv3
@@ -25,6 +25,10 @@ Enjoy using *Material Design Icons for Page Builders*? [**Please consider making
 * Icon font: Material Design icons https://design.google.com/icons/, (C) Google, [Apache 2.0](http://www.apache.org/licenses/)
 
 == Changelog ==
+
+= 1.2.1 =
+* Added minor improvements
+* Tested on WP 5.6
 
 = 1.2.0 =
 * Added compatibility with the Beaver Builder plugin
