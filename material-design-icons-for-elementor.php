@@ -85,6 +85,11 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		public $settings = null;
 
 		/**
+		 * Holder for modules component.
+		 */
+		public $modules;
+
+		/**
 		 * Sets up needed actions/filters for the plugin to initialize.
 		 *
 		 * @since 1.0.0
@@ -92,6 +97,9 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
+
+			// Load modules
+			add_action( 'after_setup_theme', array( $this, 'modules_loader' ), -20 );
 
 			// Internationalize the text strings used.
 			add_action( 'init', array( $this, 'lang' ), -999 );
@@ -116,6 +124,23 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		}
 
 		/**
+		 * Load modules
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function modules_loader() {
+
+			require $this->plugin_path( 'includes/modules/loader.php' );
+
+			$this->modules = new MD_Icons_CX_Loader(
+				array(
+					$this->plugin_path( 'includes/modules/vue-ui/cherry-x-vue-ui.php' ),
+				)
+			);
+		}
+
+		/**
 		 * Manually init required modules.
 		 *
 		 * @since  1.0.0
@@ -123,47 +148,11 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		 * @return void
 		 */
 		public function init() {
-			if ( ! $this->has_elementor() && ! $this->has_beaver() ) {
-				return;
-			}
 
 			$this->load_files();
 
 			$this->integration = new MD_Icons_Integration();
 			$this->settings    = new MD_Icons_Settings();
-		}
-
-		/**
-		 * Check if Elementor installed and activated.
-		 *
-		 * @since  1.0.0
-		 * @access public
-		 * @return boolean
-		 */
-		public function has_elementor() {
-			return did_action( 'elementor/loaded' );
-		}
-
-		/**
-		 * Check if Beaver Builder installed and activated.
-		 *
-		 * @since  1.0.0
-		 * @access public
-		 * @return boolean
-		 */
-		public function has_beaver() {
-			return defined( 'FL_BUILDER_VERSION' );
-		}
-
-		/**
-		 * Returns elementor instance.
-		 *
-		 * @since  1.0.0
-		 * @access public
-		 * @return \Elementor\Plugin
-		 */
-		public function elementor() {
-			return \Elementor\Plugin::instance();
 		}
 
 		/**
