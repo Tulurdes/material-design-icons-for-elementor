@@ -210,6 +210,23 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		}
 
 		/**
+		 * Returns path to template file.
+		 *
+		 * @param  string $name
+		 * @return string|bool
+		 */
+		public function get_template( $name = null ) {
+
+			$template = $this->plugin_path( 'templates/' . $name );
+
+			if ( file_exists( $template ) ) {
+				return $template;
+			} else {
+				return false;
+			}
+		}
+
+		/**
 		 * Loads the translation files.
 		 *
 		 * @since 1.0.0
