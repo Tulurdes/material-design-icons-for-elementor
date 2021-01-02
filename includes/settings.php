@@ -28,7 +28,6 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'register_page' ), 99 );
-			add_action( 'admin_init', array( $this, 'register_settings' ) ); // TODO: need delete
 
 			// Enqueue assets
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
@@ -52,71 +51,7 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 		}
 
 		public function render_page() {
-			?>
-			<div class="wrap">
-				<h2><?php echo get_admin_page_title() ?></h2>
-
-				<div class="elem-material-banner">
-					<a href="<?php echo $this->get_banner_url(); ?>" target="_blank">
-						<img src="<?php echo md_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" alt="">
-					</a>
-				</div>
-
-				<form method="POST" action="options.php">
-					<?php
-					settings_fields( $this->key );
-					do_settings_sections( $this->key );
-					submit_button();
-					?>
-				</form>
-
-				<a href="https://www.paypal.me/olenabartoshchak" class="elem-material-donate" target="_blank">
-					<?php esc_html_e( 'Donate', 'md-icons' ); ?>
-				</a>
-			</div>
-			<?php
-
 			include md_icons()->get_template( 'admin/settings.php' );
-		}
-
-		// TODO: need delete
-		public function register_settings(){
-			register_setting(
-				$this->key,
-				$this->key
-			);
-
-			add_settings_section(
-				'settings_section',
-				'',
-				'',
-				$this->key
-			);
-
-			add_settings_field(
-				'icon_styles',
-				esc_html__( 'Icon Styles', 'md-icons' ),
-				array( $this, 'render_icon_styles_control' ),
-				$this->key,
-				'settings_section'
-			);
-		}
-
-		// TODO: need delete
-		public function render_icon_styles_control(){
-			$settings = get_option( $this->key, $this->default );
-			$icon_styles = ! empty( $settings['icon_styles'] ) ? $settings['icon_styles'] : array();
-			?>
-			<label>
-				<input type="checkbox" name="<?php echo $this->key; ?>[icon_styles][]" value="filled" <?php checked( true, in_array( 'filled', $icon_styles ) ); ?>/>
-				<?php esc_html_e( 'Filled', 'md-icons' ); ?>
-			</label>
-			<br>
-			<label>
-				<input type="checkbox" name="<?php echo $this->key; ?>[icon_styles][]" value="outlined" <?php checked( true, in_array( 'outlined', $icon_styles ) ); ?>/>
-				<?php esc_html_e( 'Outlined', 'md-icons' ); ?>
-			</label>
-			<?php
 		}
 
 		public function get_settings( $key = null ) {
@@ -152,7 +87,8 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 				'md-icons-admin',
 				'MDIconsConfig',
 				array(
-					'iconStyles' => $this->get_settings( 'icon_styles' ),
+					'iconStyles'  => $this->get_settings( 'icon_styles' ),
+					'iconsConfig' => md_icons()->integration->get_icons_config(),
 					'i18n' => array(
 						'saved' => __( 'Saved!', 'md-icon' ),
 						'error' => __( 'Error!', 'md-icon' ),
@@ -206,10 +142,10 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 			return add_query_arg(
 				array(
 					'utm_source'   => 'photon-wp',
-					'utm_medium'   => 'material-design-icons',
+					'utm_medium'   => 'mdi-banner',
 					'utm_campaign' => 'vendor-plugin',
 				),
-				'https://crocoblock.com/'
+				'https://crocoblock.com/plugins/'
 			);
 		}
 	}

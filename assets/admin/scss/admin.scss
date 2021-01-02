@@ -1,44 +1,66 @@
 #md-icons-dashboard {
+  display: flex;
+  align-items: flex-start;
   margin-top: 20px;
+  visibility: hidden;
+
+  &.is-mounted {
+    visibility: visible;
+  }
 }
 
-.elem-material-banner {
-  margin-bottom: 30px;
+.md-icons-generated-shortcode {
+  position: relative;
+  display: block;
+  margin: 20px;
+  padding: 10px 40px 10px 10px;
+  font-size: 15px;
+  line-height: 20px;
+
+  &__copy {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px;
+    cursor: pointer;
+
+    &:hover {
+      svg {
+        fill: #007cba;
+      }
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+.cx-vui-iconpicker__preview {
+  font-size: 20px;
+}
+
+.cx-vui-iconpicker__canvas-icon {
+  font-size: 24px;
+}
+
+.md-icons-banner {
+  padding: 0 0 0 20px;
+
+  .rtl & {
+    padding: 0 20px 0 0;
+  }
 
   a {
     display: inline-block
   }
 
   img {
-    width: 700px;
-    height: auto;
-    max-width: 100%;
     vertical-align: top;
-  }
-}
-
-a.elem-material-donate {
-  display: inline-block;
-  margin-top: 30px;
-  font-size: 14px;
-  line-height: 1.2;
-  text-decoration: none;
-  text-transform: uppercase;
-  white-space: nowrap;
-  box-sizing: border-box;
-
-  background: #00684d;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 100%), linear-gradient(to right, lighten(#00684d, 15%) 0%, #00684d 50%, lighten(#00684d, 15%) 100%);
-  background-position: 0 0;
-  background-size: 200% 100%;
-  border-radius: 4px;
-  color: #fff;
-  padding: 15px 20px;
-  text-shadow: 1px 1px 5px #666;
-  transition: all 800ms;
-
-  &:hover {
-    color: #fff;
-    background-position: -100% 0;
+    border-radius: 6px;
   }
 }

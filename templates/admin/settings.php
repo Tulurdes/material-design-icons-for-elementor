@@ -12,27 +12,14 @@
 					label="<?php _e( 'Settings', 'md-icons' ); ?>"
 					key="settings"
 				>
-					<cx-vui-component-wrapper
+					<cx-vui-checkbox
 						label="<?php _e( 'Icon Styles', 'md-icons' ); ?>"
+						name="icon_styles"
+						return-type="array"
 						:wrapper-css="[ 'vertical-fullwidth' ]"
-					>
-						<cx-vui-checkbox
-							name="icon_styles"
-							return-type="array"
-							:prevent-wrap="true"
-							:options-list="[
-								{
-									value: 'filled',
-									label: '<?php _e( 'Filled', 'md-icons' ); ?>',
-								},
-								{
-									value: 'outlined',
-									label: '<?php _e( 'Outlined', 'md-icons' ); ?>',
-								}
-							]"
-							v-model="iconStyles"
-						></cx-vui-checkbox>
-					</cx-vui-component-wrapper>
+						:options-list="iconStylesList"
+						v-model="iconStyles"
+					></cx-vui-checkbox>
 					<cx-vui-component-wrapper
 						:wrapper-css="[ 'vertical-fullwidth' ]"
 					>
@@ -58,6 +45,9 @@
 							v-html="errorMessage"
 						></span>
 					</cx-vui-component-wrapper>
+					<div class="cx-vui-text">
+						Enjoy using <i>Material Design Icons for Page Builders</i>? Consider making <a href="https://www.paypal.me/olenabartoshchak" target="_blank">a donation</a> to support the project’s continued development.
+					</div>
 				</cx-vui-tabs-panel>
 
 				<cx-vui-tabs-panel
@@ -69,8 +59,64 @@
 						class="cx-vui-subtitle"
 						v-html="'<?php _e( 'Generate shortcode', 'md-icons' ); ?>'"
 					></div>
+					<div
+						class="cx-vui-text"
+						v-html="'<?php _e( 'Generate shortcode to output an icon anywhere in the content', 'md-icons' ); ?>'"
+					></div>
+					<cx-vui-select
+						name="shortcode_style"
+						label="<?php _e( 'Icon Style', 'md-icons' ); ?>"
+						:options-list="iconStylesList"
+						:wrapper-css="[ 'equalwidth' ]"
+						size="fullwidth"
+						v-model="shortcode.iconStyle"
+						@input="changeShortcodeStyle"
+					></cx-vui-select>
+					<link rel="stylesheet" v-for="url in enqueueIconsCSS" :href="url" type="text/css">
+					<cx-vui-iconpicker
+						name="shortcode_icon"
+						label="<?php _e( 'Icon', 'md-icons' ); ?>"
+						:icon-base="iconPickerSettings.base"
+						:icon-prefix="iconPickerSettings.prefix"
+						:icons="iconPickerSettings.icons"
+						:wrapper-css="[ 'equalwidth' ]"
+						:size="'fullwidth'"
+						v-model="shortcode.icon"
+						:conditions="[
+							{
+								input: shortcode.iconStyle,
+								compare: 'not_equal',
+								value: ''
+							}
+						]"
+					></cx-vui-iconpicker>
+					<code class="md-icons-generated-shortcode">
+						{{ generatedShortcode }}
+						<div
+							class="md-icons-generated-shortcode__copy"
+							role="button"
+							@click="copyToClipboard"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+							<div
+								class="cx-vui-tooltip"
+								v-if="shortcode.copied"
+							>
+								<?php _e( 'Copied!', 'md-icons' ); ?>
+							</div>
+						</div>
+					</code>
+					<div class="cx-vui-text">
+						Enjoy using <i>Material Design Icons for Page Builders</i>? Consider making <a href="https://www.paypal.me/olenabartoshchak" target="_blank">a donation</a> to support the project’s continued development.
+					</div>
 				</cx-vui-tabs-panel>
-
 			</cx-vui-tabs>
+		</div>
+
+		<div class="md-icons-banner">
+			<a href="<?php echo $this->get_banner_url(); ?>" target="_blank">
+				<img src="<?php echo md_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" width="216" height="384" alt="">
+			</a>
+		</div>
 	</div>
 </div>

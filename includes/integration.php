@@ -28,6 +28,7 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 				'filled'   => array(
 					'name'          => 'material-design-icons',
 					'label'         => esc_html__( 'Material Design Icons - Filled', 'md-icons' ),
+					'shortLabel'    => esc_html__( 'Filled', 'md-icons' ),
 					'labelIcon'     => 'fab fa-google',
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons',
@@ -39,6 +40,7 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 				'outlined' => array(
 					'name'          => 'material-design-icons-outlined',
 					'label'         => esc_html__( 'Material Design Icons - Outlined', 'md-icons' ),
+					'shortLabel'    => esc_html__( 'Outlined', 'md-icons' ),
 					'labelIcon'     => 'fab fa-google',
 					'prefix'        => 'md-',
 					'displayPrefix' => 'material-icons-outlined',
