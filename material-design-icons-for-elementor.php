@@ -153,6 +153,8 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 
 			$this->integration = new MD_Icons_Integration();
 			$this->settings    = new MD_Icons_Settings();
+
+			new MD_Icons_Shortcodes();
 		}
 
 		/**
@@ -165,6 +167,7 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		public function load_files() {
 			require $this->plugin_path( 'includes/integration.php' );
 			require $this->plugin_path( 'includes/settings.php' );
+			require $this->plugin_path( 'includes/shortcodes.php' );
 		}
 
 		/**

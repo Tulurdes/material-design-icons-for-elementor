@@ -74,7 +74,12 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 			}
 		}
 
-		public function get_icons_config() {
+		public function get_icons_config( $lib = null ) {
+
+			if ( $lib ) {
+				return isset( self::$icons_config[ $lib ] ) ? self::$icons_config[ $lib ] : null;
+			}
+
 			return self::$icons_config;
 		}
 

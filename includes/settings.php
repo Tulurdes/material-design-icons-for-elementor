@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 
 	/**
-	 * Define Elem_Material_Icons_Settings class
+	 * Define MD_Icons_Settings class
 	 */
 	class MD_Icons_Settings {
 
@@ -22,7 +22,7 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 		);
 
 		/**
-		 * Initialize integration hooks
+		 * Initialize hooks
 		 *
 		 * @return void
 		 */

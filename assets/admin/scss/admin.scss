@@ -56,11 +56,12 @@
   }
 
   a {
-    display: inline-block
+    display: inline-block;
+    border-radius: 6px;
+    overflow: hidden;
   }
 
   img {
     vertical-align: top;
-    border-radius: 6px;
   }
 }
