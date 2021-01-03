@@ -3,7 +3,7 @@
  * Plugin Name: Material Design Icons for Page Builders
  * Plugin URI:  https://github.com/photon-wp/material-design-icons-for-elementor
  * Description: Google Material Design Icons for Page Builders Icons Control
- * Version:     1.2.1
+ * Version:     1.3.0
  * Author:      Photon WP
  * Author URI:  https://github.com/photon-wp
  * Text Domain: md-icons
@@ -41,7 +41,7 @@ if ( ! class_exists( 'MD_Icons' ) ) {
 		 * @access private
 		 * @var    string
 		 */
-		private $version = '1.2.1';
+		private $version = '1.3.0';
 
 		/**
 		 * Holder for base plugin URL.
