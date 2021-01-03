@@ -17,6 +17,8 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 
 		private static $icons_config = null;
 
+		private static $shared_styles = array();
+
 		/**
 		 * Initialize integration hooks
 		 *
@@ -51,7 +53,7 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 				),
 			);
 
-			$this->load_integration_packages();
+			add_action( 'init', array( $this, 'load_integration_packages' ) );
 		}
 
 		public function load_integration_packages() {
@@ -106,6 +108,53 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 			$json = ob_get_clean();
 
 			return json_decode( $json, true );
+		}
+
+		public function register_icons_assets() {
+
+			foreach ( $this->get_icons_config() as $key => $config ) {
+
+				if ( ! $this->check_if_enabled_icon_style( $key ) ) {
+					continue;
+				}
+
+				$this->register_icon_style_assets( $config );
+			}
+		}
+
+		public function register_icon_style_assets( $config ) {
+
+			$dependencies = array();
+
+			if ( ! empty( $config['enqueue'] ) ) {
+
+				foreach ( (array) $config['enqueue'] as $css_url ) {
+
+					if ( ! in_array( $css_url, array_keys( self::$shared_styles ) ) ) {
+
+						$count = count( self::$shared_styles );
+						$style_handle = ( 0 < $count ) ? 'material-icons-' . count( self::$shared_styles ) : 'material-icons';
+
+						wp_register_style(
+							$style_handle,
+							$css_url,
+							false,
+							$config['ver']
+						);
+
+						self::$shared_styles[ $css_url ] = $style_handle;
+					}
+
+					$dependencies[] = self::$shared_styles[ $css_url ];
+				}
+			}
+
+			wp_register_style(
+				$config['name'],
+				$config['url'],
+				$dependencies,
+				$config['ver']
+			);
 		}
 	}
 

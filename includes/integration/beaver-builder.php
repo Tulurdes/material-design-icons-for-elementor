@@ -22,7 +22,7 @@ class Beaver_Builder {
 	 */
 	public function __construct() {
 		add_filter( 'fl_builder_icon_sets',               array( $this, 'add_material_icons_to_beaver' ) );
-		add_action( 'wp_enqueue_scripts',                 array( $this, 'register_icons_assets' ) );
+		add_action( 'wp_enqueue_scripts',                 array( md_icons()->integration, 'register_icons_assets' ) );
 		add_action( 'wp_enqueue_scripts',                 array( $this, 'enqueue_icons_assets_in_beaver_editor' ) );
 		add_action( 'fl_builder_enqueue_styles_for_icon', array( $this, 'enqueue_icons_assets_for_beaver_module' ) );
 	}
@@ -82,49 +82,6 @@ class Beaver_Builder {
 		}
 	}
 
-	public function register_icons_assets() {
-
-		$shared_styles = array();
-
-		foreach ( md_icons()->integration->get_icons_config() as $key => $config ) {
-
-			if ( ! md_icons()->integration->check_if_enabled_icon_style( $key ) ) {
-				continue;
-			}
-
-			$dependencies = array();
-
-			if ( ! empty( $config['enqueue'] ) ) {
-
-				foreach ( (array) $config['enqueue'] as $css_url ) {
-
-					if ( ! in_array( $css_url, array_keys( $shared_styles ) ) ) {
-
-						$count = count( $shared_styles );
-						$style_handle = ( 0 < $count ) ? 'material-icons-' . count( $shared_styles ) : 'material-icons';
-
-						wp_register_style(
-							$style_handle,
-							$css_url,
-							false,
-							$config['ver']
-						);
-
-						$shared_styles[ $css_url ] = $style_handle;
-					}
-
-					$dependencies[] = $shared_styles[ $css_url ];
-				}
-			}
-
-			wp_register_style(
-				$config['name'],
-				$config['url'],
-				$dependencies,
-				$config['ver']
-			);
-		}
-	}
 }
 
 new Beaver_Builder();

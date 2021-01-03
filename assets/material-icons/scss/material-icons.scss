@@ -1,5 +1,12 @@
 @import "icons";
 
+.md-icon-wrap {
+  display: inline-flex;
+  font-size: 50px;
+  line-height: 1;
+  text-align: center;
+}
+
 .material-icons,
 .material-icons-outlined {
   display: inline-block;

@@ -51,7 +51,26 @@ if ( ! class_exists( 'MD_Icons_Shortcodes' ) ) {
 
 			$result = sprintf( '<div class="md-icon-wrap"><i class="%1$s %2$s"></i></div>', $config['displayPrefix'], $atts['icon'] );
 
+			$this->enqueue_icon_assets( $config );
+
 			return $result;
+		}
+
+		/**
+		 * Enqueue icon assets
+		 *
+		 * @param array $config
+		 */
+		public function enqueue_icon_assets( $config ) {
+
+			if ( ! wp_script_is( $config['name'], 'registered' ) ) {
+				md_icons()->integration->register_icon_style_assets( $config );
+			}
+
+			if ( ! wp_script_is( $config['name'], 'enqueued' ) ) {
+				wp_enqueue_style( $config['name'] );
+			}
+
 		}
 	}
 
