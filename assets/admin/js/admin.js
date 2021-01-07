@@ -26,6 +26,7 @@
 				icon: '',
 				copied: false,
 			},
+			showCopyShortcode: undefined !== navigator.clipboard && undefined !== navigator.clipboard.writeText,
 		},
 		mounted: function() {
 			this.$el.className = 'is-mounted';
