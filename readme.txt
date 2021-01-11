@@ -5,7 +5,7 @@ Tags: elementor, material design icons, elementor icons, beaver builder, beaver 
 Requires at least: 4.7
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,6 +28,9 @@ Enjoy using *Material Design Icons for Page Builders*? [**Please consider making
 * Icon font: Material Design icons https://design.google.com/icons/, (C) Google, [Apache 2.0](http://www.apache.org/licenses/)
 
 == Changelog ==
+
+= 1.3.1 =
+* Fixed minor issues
 
 = 1.3.0 =
 * Added Shortcode Generator
