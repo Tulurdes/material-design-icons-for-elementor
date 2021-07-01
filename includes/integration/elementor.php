@@ -33,10 +33,41 @@ class Elementor {
 				continue;
 			}
 
+			// Dequeue dependency styles on frontend.
+			if ( ! \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+				$config['enqueue'] = array();
+			}
+
+			$config['render_callback'] = array( $this, 'render_icon' );
+
 			$tabs[ $config['name'] ] = $config;
 		}
 
 		return $tabs;
+	}
+
+	public function render_icon( $icon, $attributes, $tag ) {
+
+		if ( empty( $attributes['class'] ) ) {
+			$attributes['class'] = $icon['value'];
+		} else {
+			if ( is_array( $attributes['class'] ) ) {
+				$attributes['class'][] = $icon['value'];
+			} else {
+				$attributes['class'] .= ' ' . $icon['value'];
+			}
+		}
+
+		$value = $icon['value'];
+		$value = explode( ' ', $value );
+
+		$icon_value = ! empty( $value[1] ) ? $value[1] : false;
+
+		if ( $icon_value ) {
+			$attributes['data-md-icon'] = str_replace( 'md-', '', $icon_value );
+		}
+
+		return '<' . $tag . ' ' . \Elementor\Utils::render_html_attributes( $attributes ) . '></' . $tag . '>';
 	}
 }
 

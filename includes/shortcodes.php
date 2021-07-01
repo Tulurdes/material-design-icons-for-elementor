@@ -49,11 +49,38 @@ if ( ! class_exists( 'MD_Icons_Shortcodes' ) ) {
 				return $result;
 			}
 
-			$result = sprintf( '<div class="md-icon-wrap"><i class="%1$s %2$s"></i></div>', $config['displayPrefix'], $atts['icon'] );
+			$result = sprintf(
+				'<div class="md-icon-wrap"><i class="%1$s %2$s" data-md-icon="%3$s"></i></div>',
+				$config['displayPrefix'],
+				$atts['icon'],
+				str_replace( 'md-', '', $atts['icon']  )
+			);
+
+			static $added_styles = false;
+
+			if ( ! $added_styles ) {
+				add_action( 'wp_footer', array( $this, 'print_shortcode_styles' ) );
+			}
+
+			// Dequeue dependency styles.
+			$config['enqueue'] = array();
 
 			$this->enqueue_icon_assets( $config );
 
 			return $result;
+		}
+
+		public function print_shortcode_styles() {
+			?>
+			<style type="text/css">
+				.md-icon-wrap {
+					display: inline-flex;
+					font-size: 50px;
+					line-height: 1;
+					text-align: center;
+				}
+			</style>
+			<?php
 		}
 
 		/**
