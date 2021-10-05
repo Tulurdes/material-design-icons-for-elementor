@@ -114,10 +114,20 @@
 			</cx-vui-tabs>
 		</div>
 
-		<div class="md-icons-banner">
+		<div class="md-icons-banner md-icons-banner--side">
 			<a href="<?php echo $this->get_banner_url(); ?>" target="_blank">
 				<img src="<?php echo md_icons()->plugin_url( 'assets/images/banner.jpg' ); ?>" width="216" height="384" alt="">
 			</a>
+		</div>
+	</div>
+	<div class="md-icons-promo-section">
+		<h3><?php _e( 'Our other plugins', 'md-icons' ); ?></h3>
+		<div class="md-icons-promo">
+			<div class="md-icons-promo__item md-icons-banner">
+				<a href="https://codecanyon.net/item/calculated-field-for-elementor-form/33650586" target="_blank">
+					<img src="<?php echo md_icons()->plugin_url( 'assets/images/promo1.jpeg' ); ?>" width="590" height="300" alt="Calculated Field for Elementor Form">
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
