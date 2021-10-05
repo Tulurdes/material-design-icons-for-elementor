@@ -48,6 +48,9 @@
 					<div class="cx-vui-text">
 						Enjoy using <i>Material Design Icons for Page Builders</i>? Consider making <a href="https://www.paypal.me/olenabartoshchak" target="_blank">a donation</a> to support the project’s continued development.
 					</div>
+					<div class="cx-vui-text">
+						<strong>Bug Report:</strong> If you find a bug, you can <a href="https://github.com/photon-wp/material-design-icons-for-elementor/issues" target="_blank">submit a bug report</a>.
+					</div>
 				</cx-vui-tabs-panel>
 
 				<cx-vui-tabs-panel
@@ -109,6 +112,9 @@
 					</code>
 					<div class="cx-vui-text">
 						Enjoy using <i>Material Design Icons for Page Builders</i>? Consider making <a href="https://www.paypal.me/olenabartoshchak" target="_blank">a donation</a> to support the project’s continued development.
+					</div>
+					<div class="cx-vui-text">
+						<strong>Bug Report:</strong> If you find a bug, you can <a href="https://github.com/photon-wp/material-design-icons-for-elementor/issues" target="_blank">submit a bug report</a>.
 					</div>
 				</cx-vui-tabs-panel>
 			</cx-vui-tabs>
