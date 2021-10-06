@@ -48,7 +48,7 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 					'displayPrefix' => 'material-icons-outlined',
 					'url'           => md_icons()->plugin_url( 'assets/material-icons/css/material-icons-outlined.css' ),
 					'enqueue'       => array( md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
-					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons.json' ),
+					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons-outlined.json' ),
 					'ver'           => md_icons()->get_version(),
 				),
 			);
