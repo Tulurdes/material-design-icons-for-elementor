@@ -1,12 +1,16 @@
 #md-icons-dashboard {
-  display: flex;
-  align-items: flex-start;
-  margin-top: 20px;
   visibility: hidden;
 
   &.is-mounted {
     visibility: visible;
   }
+}
+
+.md-icons-main-section {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 20px;
 }
 
 .md-icons-generated-shortcode {
@@ -50,13 +54,7 @@
 
 .md-icons-banner {
 
-  &--side {
-    padding: 0 0 0 20px;
-
-    .rtl & {
-      padding: 0 20px 0 0;
-    }
-  }
+  &--side {}
 
   a {
     display: inline-block;
@@ -74,7 +72,9 @@
 .md-icons-promo-section {}
 
 .md-icons-promo {
-  &__item {
-    max-width: 450px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+
+  &__item {}
 }

@@ -89,6 +89,7 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 				array(
 					'iconStyles'  => $this->get_settings( 'icon_styles' ),
 					'iconsConfig' => md_icons()->integration->get_icons_config(),
+					'ourPluginsJson' => 'https://raw.githubusercontent.com/FlexyAddons/plugins-list/main/plugins.json',
 					'i18n' => array(
 						'saved' => __( 'Saved!', 'md-icon' ),
 						'error' => __( 'Error!', 'md-icon' ),
@@ -146,6 +147,14 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 					'utm_campaign' => 'vendor-plugin',
 				),
 				'https://crocoblock.com/plugins/'
+			);
+		}
+
+		public function print_banner_html() {
+			printf(
+				'<div class="md-icons-banner md-icons-banner--side"><a href="%1$s" target="_blank"><img src="%2$s" width="216" height="384" alt=""></a></div>',
+				$this->get_banner_url(),
+				md_icons()->plugin_url( 'assets/images/banner.jpg' )
 			);
 		}
 	}

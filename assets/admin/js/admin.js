@@ -27,9 +27,20 @@
 				copied: false,
 			},
 			showCopyShortcode: undefined !== navigator.clipboard && undefined !== navigator.clipboard.writeText,
+
+			ourPlugins: [],
 		},
 		mounted: function() {
+			var self = this;
 			this.$el.className = 'is-mounted';
+
+			jQuery.ajax({
+				url: window.MDIconsConfig.ourPluginsJson,
+				type: 'GET',
+				dataType: 'json',
+			}).done( function( response ) {
+				self.ourPlugins = response;
+			});
 		},
 		computed: {
 			iconStylesList: function() {
