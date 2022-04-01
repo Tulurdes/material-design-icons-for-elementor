@@ -48,7 +48,7 @@
 							></span>
 						</cx-vui-component-wrapper>
 						<div class="cx-vui-text">
-							Enjoy using <i>Material Design Icons for Page Builders</i>? Consider making <a href="https://www.paypal.me/olenabartoshchak" target="_blank">a donation</a> to support the project’s continued development.
+							Enjoy using <i>Material Design Icons for Page Builders</i>? You can buy <a href="https://www.buymeacoffee.com/photonwp2020" target="_blank">a cup of coffee</a> for me as a thank you.
 						</div>
 						<div class="cx-vui-text">
 							<strong>Bug Report:</strong> If you find a bug, you can <a href="https://github.com/photon-wp/material-design-icons-for-elementor/issues" target="_blank">submit a bug report</a>.
