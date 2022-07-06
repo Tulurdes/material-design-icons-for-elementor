@@ -3,7 +3,7 @@ Contributors: photon2020
 Donate link: https://www.buymeacoffee.com/photonwp2020
 Tags: elementor, material design icons, elementor icons, beaver builder, beaver builder icons, shortcode generator
 Requires at least: 4.7
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 5.6
 Stable tag: 1.4.2
 License: GPLv3
