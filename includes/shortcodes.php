@@ -56,6 +56,8 @@ if ( ! class_exists( 'MD_Icons_Shortcodes' ) ) {
 				str_replace( 'md-', '', $atts['icon']  )
 			);
 
+			$result = wp_kses_post( $result );
+
 			static $added_styles = false;
 
 			if ( ! $added_styles ) {
