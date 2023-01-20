@@ -87,9 +87,10 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 				'md-icons-admin',
 				'MDIconsConfig',
 				array(
-					'iconStyles'  => $this->get_settings( 'icon_styles' ),
-					'iconsConfig' => md_icons()->integration->get_icons_config(),
+					'iconStyles'     => $this->get_settings( 'icon_styles' ),
+					'iconsConfig'    => md_icons()->integration->get_icons_config(),
 					'ourPluginsJson' => 'https://raw.githubusercontent.com/FlexyAddons/plugins-list/main/plugins.json',
+					'_nonce'         => wp_create_nonce( 'md-icons' ),
 					'i18n' => array(
 						'saved' => __( 'Saved!', 'md-icon' ),
 						'error' => __( 'Error!', 'md-icon' ),
@@ -109,6 +110,12 @@ if ( ! class_exists( 'MD_Icons_Settings' ) ) {
 		 * Save settings
 		 */
 		public function save_settings() {
+
+			if ( empty( $_REQUEST['_nonce'] ) || ! wp_verify_nonce( $_REQUEST['_nonce'], 'md-icons' ) ) {
+				wp_send_json_error( array(
+					'message' => esc_html__( 'Nonce validation failed', 'md-icons' ),
+				) );
+			}
 
 			if ( ! current_user_can( 'manage_options' ) ) {
 				wp_send_json_error( array(

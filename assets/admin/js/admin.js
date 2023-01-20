@@ -87,6 +87,7 @@
 						settings: {
 							icon_styles: self.iconStyles
 						},
+						_nonce: window.MDIconsConfig._nonce,
 					},
 				} ).done( function( response ) {
 
@@ -98,7 +99,7 @@
 
 					} else {
 						self.result = 'error';
-						self.errorMessage = response.message ? response.message : self.i18n.error;
+						self.errorMessage = ( response.data && response.data.message ) ? response.data.message : self.i18n.error;
 					}
 
 					self.hideNotice();
