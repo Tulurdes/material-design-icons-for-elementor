@@ -11,6 +11,10 @@
   align-items: flex-start;
   margin-top: 20px;
   gap: 20px;
+
+  > .cx-vui-panel {
+    flex: 0 0 100%;
+  }
 }
 
 .md-icons-generated-shortcode {
@@ -58,14 +62,13 @@
 
   a {
     display: inline-block;
-    border-radius: 6px;
-    overflow: hidden;
   }
 
   img {
     vertical-align: top;
     max-width: 100%;
     height: auto;
+    border-radius: 6px;
   }
 }
 
