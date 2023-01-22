@@ -51,6 +51,30 @@ if ( ! class_exists( 'MD_Icons_Integration' ) ) {
 					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons-outlined.json' ),
 					'ver'           => md_icons()->get_version(),
 				),
+				'rounded' => array(
+					'name'          => 'material-design-icons-rounded',
+					'label'         => esc_html__( 'Material Design Icons - Rounded', 'md-icons' ),
+					'shortLabel'    => esc_html__( 'Rounded', 'md-icons' ),
+					'labelIcon'     => 'fab fa-google',
+					'prefix'        => 'md-',
+					'displayPrefix' => 'material-icons-round',
+					'url'           => md_icons()->plugin_url( 'assets/material-icons/css/material-icons-round.css' ),
+					'enqueue'       => array( md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
+					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons-round.json' ),
+					'ver'           => md_icons()->get_version(),
+				),
+				'sharp' => array(
+					'name'          => 'material-design-icons-sharp',
+					'label'         => esc_html__( 'Material Design Icons - Sharp', 'md-icons' ),
+					'shortLabel'    => esc_html__( 'Sharp', 'md-icons' ),
+					'labelIcon'     => 'fab fa-google',
+					'prefix'        => 'md-',
+					'displayPrefix' => 'material-icons-sharp',
+					'url'           => md_icons()->plugin_url( 'assets/material-icons/css/material-icons-sharp.css' ),
+					'enqueue'       => array( md_icons()->plugin_url( 'assets/material-icons/css/material-icons.css' ) ),
+					'fetchJson'     => md_icons()->plugin_url( 'assets/material-icons/fonts/icons-sharp.json' ),
+					'ver'           => md_icons()->get_version(),
+				),
 			);
 
 			add_action( 'init', array( $this, 'load_integration_packages' ) );

@@ -2,12 +2,10 @@
 	font-family: 'Material Icons Outlined';
 	font-style: normal;
 	font-weight: 400;
-	src: url(../fonts/material-outline.eot); /* For IE6-8 */
 	src: local('Material Icons Outlined'),
-	local('MaterialIcons-Outlined'),
-	url(../fonts/material-outline.woff2) format('woff2'),
-	url(../fonts/material-outline.woff) format('woff'),
-	url(../fonts/material-outline.otf) format('opentype');
+		url(../fonts/material-outline.woff2) format('woff2'),
+		url(../fonts/material-outline.woff) format('woff'),
+		url(../fonts/material-outline.otf) format('opentype');
 }
 
 .material-icons-outlined {
