@@ -22,6 +22,7 @@ class Elementor {
 	 */
 	public function __construct() {
 		add_filter( 'elementor/icons_manager/additional_tabs', array( $this, 'add_material_icons_tabs' ) );
+		add_filter( 'jet-engine/icons-manager/custom-icon-html', array( $this, 'custom_icon_render' ), 10, 4 );
 	}
 
 	public function add_material_icons_tabs( $tabs = array() ) {
@@ -34,7 +35,8 @@ class Elementor {
 			}
 
 			// Dequeue dependency styles on frontend.
-			if ( ! \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+			//if ( ! \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+			if ( ! is_admin() ) {
 				$config['enqueue'] = array();
 			}
 
@@ -61,6 +63,22 @@ class Elementor {
 		$value = $icon['value'];
 		$value = explode( ' ', $value );
 
+		$icon_value = ! empty( $value[1] ) ? $value[1] : false;
+
+		if ( $icon_value ) {
+			$attributes['data-md-icon'] = str_replace( 'md-', '', $icon_value );
+		}
+
+		return '<' . $tag . ' ' . \Elementor\Utils::render_html_attributes( $attributes ) . '></' . $tag . '>';
+	}
+
+	public function custom_icon_render( $res, $icon, $attributes, $tag ) {
+
+		if ( false === strpos( $icon, 'material-icons' ) || false === strpos( $icon, ' md-' ) ) {
+			return $res;
+		}
+
+		$value      = explode( ' ', $icon );
 		$icon_value = ! empty( $value[1] ) ? $value[1] : false;
 
 		if ( $icon_value ) {
