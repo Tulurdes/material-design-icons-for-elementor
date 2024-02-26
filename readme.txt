@@ -3,9 +3,9 @@ Contributors: photon2020
 Donate link: https://www.buymeacoffee.com/photonwp2020
 Tags: elementor, material design icons, elementor icons, beaver builder, beaver builder icons, shortcode generator
 Requires at least: 4.7
-Tested up to: 6.1
+Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,6 +31,9 @@ If you find a bug, you can [submit a bug report](https://github.com/photon-wp/ma
 * Icon font: Material Design icons https://design.google.com/icons/, (C) Google, [Apache 2.0](http://www.apache.org/licenses/)
 
 == Changelog ==
+
+= 1.5.1 =
+* Added minor improvements
 
 = 1.5.0 =
 * Added the Rounded icon style
